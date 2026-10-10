@@ -15,6 +15,47 @@ const toIsoDate = (rawDate) => {
   return `${match[3]}-${String(month).padStart(2, '0')}-${match[2].padStart(2, '0')}`;
 };
 
+const BASE_URL = 'https://bepi.mpob.gov.my/admin2/price_local_daily_view_cpo_msia.php?more=Y&jenis=1Y&tahun=';
+const HISTORY_START_YEAR = 2024;
+const HISTORY_PATH = path.resolve(process.cwd(), 'market', 'cpo-history.json');
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (compatible; PalmDocMarketFeed/1.0; +https://github.com/BorneanWingz/PalmDoc-Market-Feed)',
+  Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+};
+
+const parseSeries = (html) => {
+  const categoryMatch = html.match(/categories\s*:\s*\[(.*?)\]/s);
+  const dataMatch = html.match(/data\s*:\s*\[(.*?)\]/s);
+  if (!categoryMatch || !dataMatch) {
+    throw new Error('Unable to find the MPOB categories/data arrays in the page source.');
+  }
+  const dates = [...categoryMatch[1].matchAll(/'([^']+)'/g)].map((match) => toIsoDate(match[1]));
+  const values = [...dataMatch[1].matchAll(/-?\d+(?:\.\d+)?/g)].map((match) => Number(match[0]));
+  if (!dates.length || dates.length !== values.length) {
+    throw new Error(`MPOB date/price counts do not match (${dates.length} vs ${values.length}).`);
+  }
+  return dates.map((date, index) => [date, Number(values[index].toFixed(2))]);
+};
+
+const fetchYear = async (year) => {
+  const response = await fetch(`${BASE_URL}${year}`, { headers: HEADERS });
+  if (!response.ok) {
+    throw new Error(`MPOB request for ${year} failed with status ${response.status}`);
+  }
+  return parseSeries(await response.text());
+};
+
+const buildHistory = async () => {
+  const currentYear = Number(new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kuala_Lumpur', year: 'numeric' }).format(new Date()));
+  const byDate = new Map();
+  for (let year = HISTORY_START_YEAR; year <= currentYear; year += 1) {
+    for (const [date, price] of await fetchYear(year)) {
+      if (date >= `${HISTORY_START_YEAR}-01-01`) byDate.set(date, price);
+    }
+  }
+  return [...byDate.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+};
+
 const parseLatestPrice = (html) => {
   const categoryMatch = html.match(/categories\s*:\s*\[(.*?)\]/s);
   const dataMatch = html.match(/data\s*:\s*\[(.*?)\]/s);
@@ -72,6 +113,20 @@ const main = async () => {
 
   const html = await response.text();
   const { date, price } = parseLatestPrice(html);
+
+  const points = await buildHistory();
+  const lastPoint = points.at(-1);
+  if (!lastPoint || lastPoint[0] !== date || lastPoint[1] !== price) {
+    throw new Error('History does not end at the latest price; refusing to publish.');
+  }
+  await fs.mkdir(path.dirname(HISTORY_PATH), { recursive: true });
+  await fs.writeFile(
+    HISTORY_PATH,
+    `${JSON.stringify({ source: 'MPOB Malaysia CPO Daily Price', currency: 'MYR', unit: 'RM/tonne', from: points[0][0], to: lastPoint[0], lastUpdated: new Date().toISOString(), points })}\n`,
+    'utf8',
+  );
+  console.log(`Saved ${points.length} daily prices (${points[0][0]} to ${lastPoint[0]})`);
+
   const payload = {
     source: 'MPOB Malaysia CPO Daily Price',
     sourceUrl: TARGET_URL,

@@ -26,7 +26,7 @@ The feed is served as a static file; consumers do not need a token or API key. T
 
 ## How updates work
 
-The GitHub Actions workflow in `.github/workflows/update-cpo-price.yml` runs daily at 04:00 UTC (12:00 Malaysia time) and can also be started manually from the Actions tab. It runs `scripts/fetch-cpo-price.mjs` with Node.js 20 and commits the JSON only when its contents change.
+The GitHub Actions workflow in `.github/workflows/update-cpo-price.yml` runs twice a day, at 08:31 and 16:31 Malaysia time (00:31 and 08:31 UTC), and can also be started manually from the Actions tab. Scheduled runs are skipped on weekends and on the public holidays listed in `config/non-trading-days.json`; manual runs always fetch. Movable holidays (Hari Raya, Deepavali, etc.) must be added to that file each year. The workflow runs `scripts/fetch-cpo-price.mjs` with Node.js 20 and commits the JSON only when its contents change. GitHub may start scheduled runs a few minutes late.
 
 To refresh the feed locally:
 
@@ -47,4 +47,5 @@ The script uses Node.js's built-in `fetch` and requires no npm dependencies.
 
 - `market/cpo-latest.json` — latest normalized public snapshot.
 - `scripts/fetch-cpo-price.mjs` — fetches and parses MPOB's published page.
+- `config/non-trading-days.json` — public holidays on which scheduled updates are skipped.
 - `.github/workflows/update-cpo-price.yml` — scheduled and manual refresh workflow.

@@ -38,7 +38,26 @@ const parseLatestPrice = (html) => {
   return { date: toIsoDate(date), price: Number(price.toFixed(2)) };
 };
 
+// Scheduled runs skip weekends and the public holidays listed in config/non-trading-days.json.
+// Manual runs (workflow_dispatch or local) always fetch.
+const getNonTradingReason = async () => {
+  const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kuala_Lumpur' }).format(new Date());
+  const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kuala_Lumpur', weekday: 'short' }).format(new Date());
+  if (weekday === 'Sat' || weekday === 'Sun') return `${today} is a weekend`;
+  const raw = await fs.readFile(path.resolve(process.cwd(), 'config', 'non-trading-days.json'), 'utf8');
+  const holiday = JSON.parse(raw).holidays.find((entry) => entry.date === today);
+  return holiday ? `${today} is a public holiday (${holiday.name})` : null;
+};
+
 const main = async () => {
+  if (process.env.GITHUB_EVENT_NAME === 'schedule') {
+    const reason = await getNonTradingReason();
+    if (reason) {
+      console.log(`Skipping update: ${reason}.`);
+      return;
+    }
+  }
+
   const response = await fetch(TARGET_URL, {
     headers: {
       'User-Agent': 'Mozilla/5.0 (compatible; PalmDocMarketFeed/1.0; +https://github.com/BorneanWingz/PalmDoc-Market-Feed)',

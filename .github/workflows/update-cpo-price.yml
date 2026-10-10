@@ -2,7 +2,9 @@ name: Update MPOB CPO Price
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    # 08:31 and 16:31 Malaysia time (UTC+8)
+    - cron: '31 0 * * *'
+    - cron: '31 8 * * *'
   workflow_dispatch:
 
 permissions:

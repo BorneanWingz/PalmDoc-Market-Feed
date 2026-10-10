@@ -1,0 +1,11 @@
+{
+  "note": "Malaysian public holidays on which the scheduled update is skipped. Weekends are skipped automatically. Add movable holidays (Hari Raya, Deepavali, Chinese New Year, Wesak, Maulidur Rasul, etc.) each year once announced.",
+  "holidays": [
+    { "date": "2026-12-25", "name": "Christmas Day" },
+    { "date": "2027-01-01", "name": "New Year's Day" },
+    { "date": "2027-05-01", "name": "Labour Day" },
+    { "date": "2027-08-31", "name": "Merdeka Day" },
+    { "date": "2027-09-16", "name": "Malaysia Day" },
+    { "date": "2027-12-25", "name": "Christmas Day" }
+  ]
+}

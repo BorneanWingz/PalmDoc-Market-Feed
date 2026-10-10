@@ -7,11 +7,12 @@ const TARGET_URL = 'https://bepi.mpob.gov.my/admin2/price_local_daily_view_cpo_m
 const OUT_PATH = path.resolve(process.cwd(), 'market', 'cpo-latest.json');
 
 const toIsoDate = (rawDate) => {
-  const parsed = new Date(rawDate);
-  if (Number.isNaN(parsed.getTime())) {
+  const match = rawDate.trim().match(/^([A-Za-z]{3})[a-z]*\.?\s+(\d{1,2}),?\s+(\d{4})$/);
+  const month = match ? ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'].indexOf(match[1].toLowerCase()) + 1 : 0;
+  if (!match || !month) {
     throw new Error(`Unable to parse date: ${rawDate}`);
   }
-  return parsed.toISOString().slice(0, 10);
+  return `${match[3]}-${String(month).padStart(2, '0')}-${match[2].padStart(2, '0')}`;
 };
 
 const parseLatestPrice = (html) => {

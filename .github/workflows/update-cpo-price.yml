@@ -2,9 +2,14 @@ name: Update MPOB CPO Price
 
 on:
   schedule:
-    # 08:31 and 16:31 Malaysia time (UTC+8)
+    # 08:31 and 16:31 Malaysia time (UTC+8). GitHub often starts scheduled runs hours late or drops them,
+    # so backup runs follow; they only commit when the price has changed.
     - cron: '31 0 * * *'
+    - cron: '31 2 * * *'
+    - cron: '31 4 * * *'
     - cron: '31 8 * * *'
+    - cron: '31 10 * * *'
+    - cron: '31 12 * * *'
   workflow_dispatch:
 
 permissions:

@@ -1,0 +1,42 @@
+name: Update MPOB OER & FFB Prices
+
+on:
+  schedule:
+    # 09:00 and 17:00 Malaysia time (UTC+8). OER is monthly data published
+    # mid-month; FFB is daily. Backup runs only commit when data changes.
+    - cron: '0 1 * * *'
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-market-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch OER data
+        run: node scripts/fetch-oer.mjs
+
+      - name: Fetch FFB prices
+        run: node scripts/fetch-ffb-price.mjs
+
+      - name: Commit and push update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add market/oer-history.json market/oer-latest.json market/ffb-history.json market/ffb-latest.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update MPOB OER & FFB prices"
+            git push
+          fi

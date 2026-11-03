@@ -2,8 +2,8 @@
   "source": "MPOB Malaysia CPO Daily Price",
   "sourceUrl": "https://bepi.mpob.gov.my/admin2/price_local_daily_view_cpo_msia.php?more=Y&jenis=6M",
   "date": "2026-11-02",
-  "price": 4392.5,
+  "price": 4391,
   "currency": "MYR",
   "unit": "RM/tonne",
-  "lastUpdated": "2026-11-03T07:04:14.876Z"
+  "lastUpdated": "2026-11-03T09:47:24.306Z"
 }

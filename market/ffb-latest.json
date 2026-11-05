@@ -1,17 +1,17 @@
 {
   "source": "MPOB Daily FFB Reference Price Summary by Region (Mill Gate)",
-  "sourceUrl": "https://price.mpob.gov.my/pdf/daily/ffb/2026-11-04",
-  "date": "2026-11-04",
+  "sourceUrl": "https://price.mpob.gov.my/pdf/daily/ffb/2026-11-05",
+  "date": "2026-11-05",
   "unit": "RM per 1% OER",
   "regions": {
-    "north": 45.64,
-    "south": 45.75,
-    "central": 45.74,
-    "eastCoast": 45.72,
-    "sabah": 40.93,
-    "sarawak": 41.32
+    "north": 44.96,
+    "south": 45.13,
+    "central": 45.08,
+    "eastCoast": 44.98,
+    "sabah": 40.3,
+    "sarawak": 40.69
   },
   "monthPeriod": "2026-11",
-  "lastUpdate": "04/11/2026 12:00 pm",
-  "lastUpdated": "2026-11-04T16:42:06.564Z"
+  "lastUpdate": "05/11/2026 12:00 pm",
+  "lastUpdated": "2026-11-05T07:38:09.755Z"
 }

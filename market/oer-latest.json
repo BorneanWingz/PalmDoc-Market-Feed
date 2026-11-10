@@ -1,139 +1,139 @@
 {
   "source": "MPOB Prestasi Sawit — Oil Extraction Rate (OER)",
   "sourceUrl": "https://prestasisawit.mpob.gov.my/en/oer",
-  "period": "2026-09",
+  "period": "2026-10",
   "year": 2026,
-  "month": "09",
+  "month": "10",
   "malaysia": {
-    "oerCpo": 20.26,
-    "oerPeninsular": 20.01,
-    "oerSabah": 21.25,
-    "oerSarawak": 19.96,
-    "maxLicensee": 25.14,
-    "minLicensee": 11.55,
-    "millCount": 449
+    "oerCpo": 20.34,
+    "oerPeninsular": 20.07,
+    "oerSabah": 21.41,
+    "oerSarawak": 19.99,
+    "maxLicensee": 25.87,
+    "minLicensee": 12.68,
+    "millCount": 452
   },
   "states": [
     {
       "stateCode": "01",
       "stateName": "Johor",
-      "oerCpo": 20.32,
-      "oerCpko": 46.58,
-      "kerPk": 5.46,
-      "kerPkc": 50.35,
-      "cpoProcessed": 336906.38,
-      "ffbProcessed": 1658081.5
+      "oerCpo": 20.17,
+      "oerCpko": 46.41,
+      "kerPk": 5.22,
+      "kerPkc": 50.38,
+      "cpoProcessed": 339648.5,
+      "ffbProcessed": 1683723.75
     },
     {
       "stateCode": "02",
       "stateName": "Kedah",
-      "oerCpo": 20.5,
+      "oerCpo": 20.29,
       "oerCpko": 0,
-      "kerPk": 5.21,
+      "kerPk": 4.82,
       "kerPkc": 0,
-      "cpoProcessed": 23960.63,
-      "ffbProcessed": 116909.29
+      "cpoProcessed": 21525.6,
+      "ffbProcessed": 106105.2
     },
     {
       "stateCode": "03",
       "stateName": "Kelantan",
-      "oerCpo": 20.87,
+      "oerCpo": 21.25,
       "oerCpko": 0,
-      "kerPk": 5.15,
+      "kerPk": 5.14,
       "kerPkc": 0,
-      "cpoProcessed": 40051.28,
-      "ffbProcessed": 191949.81
+      "cpoProcessed": 45539.89,
+      "ffbProcessed": 214309.39
     },
     {
       "stateCode": "04",
       "stateName": "Melaka",
-      "oerCpo": 20.84,
+      "oerCpo": 21.46,
       "oerCpko": 48,
-      "kerPk": 5.19,
+      "kerPk": 4.55,
       "kerPkc": 50,
-      "cpoProcessed": 11314.91,
-      "ffbProcessed": 54296.2
+      "cpoProcessed": 7939.9,
+      "ffbProcessed": 37003.12
     },
     {
       "stateCode": "05",
       "stateName": "Negeri Sembilan",
-      "oerCpo": 20,
+      "oerCpo": 19.95,
       "oerCpko": 44,
-      "kerPk": 5.21,
-      "kerPkc": 55.95,
-      "cpoProcessed": 76471.48,
-      "ffbProcessed": 382340.44
+      "kerPk": 5.04,
+      "kerPkc": 55.94,
+      "cpoProcessed": 77020.16,
+      "ffbProcessed": 386020.16
     },
     {
       "stateCode": "06",
       "stateName": "Pahang",
-      "oerCpo": 19.72,
-      "oerCpko": 47.43,
-      "kerPk": 5.05,
-      "kerPkc": 48.76,
-      "cpoProcessed": 335183.22,
-      "ffbProcessed": 1699778.75
+      "oerCpo": 20.15,
+      "oerCpko": 47.51,
+      "kerPk": 4.97,
+      "kerPkc": 48.71,
+      "cpoProcessed": 365273.91,
+      "ffbProcessed": 1812850.62
     },
     {
       "stateCode": "07",
       "stateName": "Perak",
-      "oerCpo": 19.8,
-      "oerCpko": 46.49,
-      "kerPk": 5.26,
-      "kerPkc": 49.85,
-      "cpoProcessed": 198123.66,
-      "ffbProcessed": 1000394
+      "oerCpo": 19.61,
+      "oerCpko": 46.22,
+      "kerPk": 5.05,
+      "kerPkc": 47.24,
+      "cpoProcessed": 175434.34,
+      "ffbProcessed": 894410.12
     },
     {
       "stateCode": "09",
       "stateName": "Pulau Pinang",
-      "oerCpo": 20.2,
+      "oerCpo": 19.98,
       "oerCpko": 0,
-      "kerPk": 5.61,
+      "kerPk": 5.01,
       "kerPkc": 0,
-      "cpoProcessed": 12392.18,
-      "ffbProcessed": 61358.36
+      "cpoProcessed": 9555.87,
+      "ffbProcessed": 47835.47
     },
     {
       "stateCode": "10",
       "stateName": "Selangor",
-      "oerCpo": 19.66,
-      "oerCpko": 45.79,
-      "kerPk": 5.1,
-      "kerPkc": 50.73,
-      "cpoProcessed": 58891.22,
-      "ffbProcessed": 299525.88
+      "oerCpo": 19.47,
+      "oerCpko": 46.11,
+      "kerPk": 4.89,
+      "kerPkc": 50.48,
+      "cpoProcessed": 52176.01,
+      "ffbProcessed": 268032.12
     },
     {
       "stateCode": "11",
       "stateName": "Terengganu",
-      "oerCpo": 20.12,
+      "oerCpo": 20.08,
       "oerCpko": 0,
-      "kerPk": 5.03,
+      "kerPk": 5.14,
       "kerPkc": 0,
-      "cpoProcessed": 58809.88,
-      "ffbProcessed": 292359.44
+      "cpoProcessed": 59193.1,
+      "ffbProcessed": 294795.78
     },
     {
       "stateCode": "13",
       "stateName": "Sabah",
-      "oerCpo": 21.25,
-      "oerCpko": 46.29,
-      "kerPk": 4.44,
-      "kerPkc": 55.09,
-      "cpoProcessed": 457760.25,
-      "ffbProcessed": 2153861.25
+      "oerCpo": 21.41,
+      "oerCpko": 46.22,
+      "kerPk": 4.6,
+      "kerPkc": 50.68,
+      "cpoProcessed": 490545.88,
+      "ffbProcessed": 2290940
     },
     {
       "stateCode": "14",
       "stateName": "Sarawak",
-      "oerCpo": 19.96,
-      "oerCpko": 45.25,
-      "kerPk": 4.41,
-      "kerPkc": 51.09,
-      "cpoProcessed": 507086.25,
-      "ffbProcessed": 2540059.5
+      "oerCpo": 19.99,
+      "oerCpko": 45.6,
+      "kerPk": 4.25,
+      "kerPkc": 50.46,
+      "cpoProcessed": 509847.09,
+      "ffbProcessed": 2550985.25
     }
   ],
-  "lastUpdated": "2026-11-09T19:21:19.429Z"
+  "lastUpdated": "2026-11-10T07:57:06.880Z"
 }
